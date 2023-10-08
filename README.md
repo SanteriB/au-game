@@ -1,2 +1,2 @@
 # au-game
-Au game
+Au game. Js + html
