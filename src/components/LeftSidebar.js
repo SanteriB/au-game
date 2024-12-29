@@ -7,6 +7,9 @@ export class LeftSidebar {
     }
 
     getComponent() {
-        return createHTMLNode({ text: this.#text });
+        return createHTMLNode({ 
+            text: this.#text,
+            onclick: () => { console.log(123); },
+        });
     }
 }
