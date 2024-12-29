@@ -1,15 +1,7 @@
-import { createHTMLNode } from "../framework"
+import { Component } from "../framework"
 
-export class LeftSidebar {
-    #text = "LeftSidebar";
-    constructor() {
-        // 
-    }
-
-    getComponent() {
-        return createHTMLNode({ 
-            text: this.#text,
-            onclick: () => { console.log(123); },
-        });
+export class LeftSidebar extends Component {
+    constructor(props, tagName) {
+        super(props, tagName);
     }
 }

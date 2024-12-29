@@ -26,8 +26,8 @@ export const createHTMLNode = ({
     children,
     text,
     ...props
-}) => {
-    const el = document.createElement("div");
+}, tagName = "div") => {
+    const el = document.createElement(tagName);
     if (text) {
         el.innerText = text;
     }
