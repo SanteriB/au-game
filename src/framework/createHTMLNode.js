@@ -1,48 +1,8 @@
-const elementAttributes = Object.freeze([
-    "id",
-    "className",
-    "style",
-]);
+import { updateHTMLNode } from "./updateHTMLNode";
 
-const elementEvents = Object.freeze([
-    "onclick",
-    "onchange",
-    "onmouseover",
-    "onmouseout",
-    "onkeydown",
-    "onkeyup",
-]);
-
-const eventsMap = Object.freeze({
-    "onclick": "click",
-    "onchange": "change",
-    "onmouseover": "mouseover",
-    "onmouseout": "mouseout",
-    "onkeydown": "keydown",
-    "onkeyup": "keyup",
-})
-
-export const createHTMLNode = ({
-    children,
-    text,
-    ...props
-}, tagName = "div") => {
+export const createHTMLNode = (props, tagName = "div") => {
     const el = document.createElement(tagName);
-    if (text) {
-        el.innerText = text;
-    }
-    if (children && children instanceof HTMLElement) {
-        el.appendChild(children);
-    }
-
-    Object.keys(props).forEach(prop => {
-        if (elementAttributes.includes(prop)) {
-            el.setAttribute(prop, props[prop]);
-        }
-        if (elementEvents.includes(prop) && typeof props[prop] === "function") {
-            el.addEventListener(eventsMap[prop], props[prop]);
-        }
-    });
+    updateHTMLNode(el, props);
 
     return el;
 };

@@ -9,9 +9,6 @@ if (appContainer) {
     const game = new Game();
     const person = new Person({ name: "Sava Petrovic" });
 
-    const leftSidebar = new LeftSidebar({
-        text: "sos",
-        style: "padding: 20px; background: red;",
-    }, "aside");
+    const leftSidebar = new LeftSidebar();
     renderDOM(appContainer, leftSidebar.getHTMLElement());
 }
