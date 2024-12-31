@@ -3,6 +3,11 @@ const elementAttributes = Object.freeze([
     "className",
     "style",
 ]);
+const attributesMap = Object.freeze({
+    "id": "id",
+    "className": "class",
+    "style": "style",
+});
 
 const elementEvents = Object.freeze([
     "onclick",
@@ -27,9 +32,12 @@ export const updateHTMLNode = (el, {
     text,
     ...props
 }) => {
-    if (text) {
+    if (typeof text === "string") {
         el.innerText = text;
+    } else if (text === null) {
+        el.innerText = "";
     }
+    
     if (children && children instanceof HTMLElement) {
         el.appendChild(children);
     }
@@ -37,7 +45,7 @@ export const updateHTMLNode = (el, {
     const propNames = Object.keys(props);
     for (const prop of propNames) {
         if (elementAttributes.includes(prop)) {
-            el.setAttribute(prop, props[prop]);
+            el.setAttribute(attributesMap[prop], props[prop]);
         }
         if (elementEvents.includes(prop) && typeof props[prop] === "function") {
             el.addEventListener(eventsMap[prop], props[prop]);

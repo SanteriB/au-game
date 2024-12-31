@@ -5,11 +5,12 @@ export class Component {
     #props = {};
     #tagName;
 
-    constructor(props, tagName = "div") {
+    createComponent(props, tagName = "div") {
         if (typeof props === "object") {
             this.#props = props;
         }
         this.#tagName = tagName;
+        this.#node = createHTMLNode(this.#props, this.#tagName);
     }
 
     update(props) {
@@ -40,7 +41,11 @@ export class Component {
         updateHTMLNode(this.#node, propsUpdate);
     }
 
-    getHTMLElement() {
+    getProperty(name) {
+        return this.#props[name];
+    }
+
+    getNode() {
         if (this.#node === null) {
             this.#node = createHTMLNode(this.#props, this.#tagName);
         }
