@@ -1,9 +1,12 @@
 import { createHTMLNode, updateHTMLNode } from "."
 
 export class Component {
+    #parent = null;
     #node = null;
     #props = {};
     #tagName;
+
+    #state = {};
 
     createComponent(props, tagName = "div") {
         if (typeof props === "object") {
@@ -11,6 +14,32 @@ export class Component {
         }
         this.#tagName = tagName;
         this.#node = createHTMLNode(this.#props, this.#tagName);
+    }
+
+    // state management
+    createState(state) {
+        this.#state = state;
+    }
+
+    getState() {
+        return this.#state;
+    }
+
+    select(selector) {
+        return selector(this.getState());
+    }
+
+    dispatch() {
+        //
+    }
+
+    // refs
+    setParent(parent) {
+        this.#parent = parent;
+    }
+
+    getParent() {
+        return this.#parent;
     }
 
     update(props) {
