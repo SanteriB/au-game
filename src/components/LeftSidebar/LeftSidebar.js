@@ -1,4 +1,4 @@
-import { renderDOM, Component } from "../../framework";
+import { renderDOM, useSelector, Component } from "../../framework";
 
 export class LeftSidebar extends Component {
     #minified = false;
@@ -10,14 +10,14 @@ export class LeftSidebar extends Component {
         }, "aside");
         
         const titleBlock = new Component();
-        console.log(this.getParent())
         titleBlock.createComponent({
-            text: this.#minified ? ">" : this.getParent()?.select(state => state.appName) ?? "",
+            text: useSelector(this.getParent()?.getState(), state => state.appName),
             className: "left-sidebar__title",
             onclick: () => {
                 this.#minified = !this.#minified;
+                console.log(this.getParent()?.select(state => state.appName));
             },
         }, "div");
-        renderDOM(this.getNode(), titleBlock);
+        renderDOM(this, titleBlock);
     }
 }

@@ -17,6 +17,10 @@ export class Component {
     }
 
     // state management
+    connect(store) {
+        console.log(store);
+    }
+    
     createState(state) {
         this.#state = state;
     }
@@ -36,6 +40,7 @@ export class Component {
     // refs
     setParent(parent) {
         this.#parent = parent;
+        console.log(this.#props);
     }
 
     getParent() {
