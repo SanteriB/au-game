@@ -20,10 +20,6 @@ export class Component {
     connect(store) {
         console.log(store);
     }
-    
-    createState(state) {
-        this.#state = state;
-    }
 
     getState() {
         return this.#state;

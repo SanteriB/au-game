@@ -13,12 +13,14 @@ if (appContainer) {
     console.log(game, person);
 
     const app = new Component();
-    const store = useStore();
+    const store = useStore(() => {
+        console.log("create store");
+        return {
+            appName: "Example game",
+        };
+    });
     app.connect(store);
     app.createComponent({ className: "app" });
-    app.createState({
-        appName: "Example game",
-    });
     renderDOM(appContainer, app);
 
     const leftSidebar = new LeftSidebar();
